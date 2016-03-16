@@ -18,9 +18,20 @@ Installing "instagram_via_webhooks" can be done either by searching for "instagr
 1. Log in to your account with IFTTT.com
 2. Add the Instagrams in Wordpress via Webhooks recipe: https://ifttt.com/recipes/397411-instagrams-in-wordpress-via-webhooks
 3. IMPORTANT: change "yourserver.com" in the recipe to reflect the domain of your Wordpress install.
-4. Download the plugin via WordPress.org
-5. Upload the ZIP file through the 'Plugins > Add New > Upload' screen in your WordPress dashboard
-6. Activate the plugin through the 'Plugins' menu in WordPress
+4. Copy this plugin to your wp-plugins folder and Activate.
+
+### Optional Settings
+
+By default, Instagram images will upload into your normal Wordpress “posts”. In my experience, having a custom post type is much more useful — in fact, that’s the whole reason I built this thing. So check Custom Posts “on” to get that loveliness.
+
+If you are in a multi-user environment, you can select which user the posts are accredited to. By default it’ll be #1.
+
+You can use IFTTT to trigger posts via some kind of hashtag or criteria other than “my pictures”. It would be a pretty good idea to review those for content before publishing live on your blog, so you can set New Post Status to “Draft” or “Pending”.
+
+### Coming Soon
+
+- Instagrams that insert into normal posts should have the image in the content in an img tag. As this is not my normal use case, I haven’t got to it yet.
+- Tags
 
 ### Frequently Asked Questions
 
@@ -29,3 +40,7 @@ Installing "instagram_via_webhooks" can be done either by searching for "instagr
 Do you have the IFTTT Maker recipe installed? https://ifttt.com/recipes/397411-instagrams-in-wordpress-via-webhooks
 
 Did you change "yourserver.com" in the IFTTT recipe to reflect your own server?
+
+> How does this validate that incoming JSONs are in fact from IFTTT?
+
+It doesn’t. If this is necessary, desirable, or necessary, please chime in on the Github Issues.

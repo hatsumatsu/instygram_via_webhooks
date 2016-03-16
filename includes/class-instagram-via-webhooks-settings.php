@@ -117,14 +117,6 @@ class instagram_via_webhooks_Settings {
 					'default'		=> false
 				),
 				array(
-					'id' 			=> 'ifttt_maker_key',
-					'label'			=> __( 'IFTTT “Maker” API key' , 'instagram-via-webhooks' ),
-					'description'	=> __( 'Verifies that incoming posts aren’t from some rando.', 'instagram-via-webhooks' ),
-					'type'			=> 'text',
-					'default'		=> '',
-					'placeholder'	=> __( '', 'instagram-via-webhooks' )
-				),
-				array(
 					'id' 			=> 'author_id',
 					'label'			=> __( 'Author' , 'instagram-via-webhooks' ),
 					'description'	=> __( 'To which user should this post be accredited?', 'instagram-via-webhooks' ),
