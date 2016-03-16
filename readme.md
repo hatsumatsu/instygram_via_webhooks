@@ -9,6 +9,8 @@ Use this plugin in conjunction with IFTTT to insert Instagrams into either your 
 
 Unlike IFTTT’s Wordpress recipe, this will actually upload images to your server, which will give you greater flexibility in theme-making and, depending on your setup, possibly better performance. You will also get all the usual Wordpress thumbnails and a “featured image” thumbnail.
 
+This plugin requires the Wordpress REST API v2. 
+
 Thanks to Hugh Lashbrooke for his very cool Wordpress plugin template. https://github.com/hlashbrooke/WordPress-Plugin-Template
 
 ### Installation
@@ -18,7 +20,8 @@ Installing "instagram_via_webhooks" can be done either by searching for "instagr
 1. Log in to your account with IFTTT.com
 2. Add the Instagrams in Wordpress via Webhooks recipe: https://ifttt.com/recipes/397411-instagrams-in-wordpress-via-webhooks
 3. IMPORTANT: change "yourserver.com" in the recipe to reflect the domain of your Wordpress install.
-4. Copy this plugin to your wp-plugins folder and Activate.
+4. Install the Wordpress REST API v2. https://wordpress.org/plugins/rest-api/ (note: this will be included in the Wordpress core very soon.)
+5. Copy this plugin to your wp-plugins folder and Activate.
 
 ### Optional Settings
 
