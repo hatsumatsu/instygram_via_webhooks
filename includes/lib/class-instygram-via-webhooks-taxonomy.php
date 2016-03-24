@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class instagram_via_webhooks_Taxonomy {
+class instygram_via_webhooks_Taxonomy {
 
 	/**
 	 * The name for the taxonomy.
@@ -72,20 +72,20 @@ class instagram_via_webhooks_Taxonomy {
             'name' => $this->plural,
             'singular_name' => $this->single,
             'menu_name' => $this->plural,
-            'all_items' => sprintf( __( 'All %s' , 'instagram-via-webhooks' ), $this->plural ),
-            'edit_item' => sprintf( __( 'Edit %s' , 'instagram-via-webhooks' ), $this->single ),
-            'view_item' => sprintf( __( 'View %s' , 'instagram-via-webhooks' ), $this->single ),
-            'update_item' => sprintf( __( 'Update %s' , 'instagram-via-webhooks' ), $this->single ),
-            'add_new_item' => sprintf( __( 'Add New %s' , 'instagram-via-webhooks' ), $this->single ),
-            'new_item_name' => sprintf( __( 'New %s Name' , 'instagram-via-webhooks' ), $this->single ),
-            'parent_item' => sprintf( __( 'Parent %s' , 'instagram-via-webhooks' ), $this->single ),
-            'parent_item_colon' => sprintf( __( 'Parent %s:' , 'instagram-via-webhooks' ), $this->single ),
-            'search_items' =>  sprintf( __( 'Search %s' , 'instagram-via-webhooks' ), $this->plural ),
-            'popular_items' =>  sprintf( __( 'Popular %s' , 'instagram-via-webhooks' ), $this->plural ),
-            'separate_items_with_commas' =>  sprintf( __( 'Separate %s with commas' , 'instagram-via-webhooks' ), $this->plural ),
-            'add_or_remove_items' =>  sprintf( __( 'Add or remove %s' , 'instagram-via-webhooks' ), $this->plural ),
-            'choose_from_most_used' =>  sprintf( __( 'Choose from the most used %s' , 'instagram-via-webhooks' ), $this->plural ),
-            'not_found' =>  sprintf( __( 'No %s found' , 'instagram-via-webhooks' ), $this->plural ),
+            'all_items' => sprintf( __( 'All %s' , 'instygram-via-webhooks' ), $this->plural ),
+            'edit_item' => sprintf( __( 'Edit %s' , 'instygram-via-webhooks' ), $this->single ),
+            'view_item' => sprintf( __( 'View %s' , 'instygram-via-webhooks' ), $this->single ),
+            'update_item' => sprintf( __( 'Update %s' , 'instygram-via-webhooks' ), $this->single ),
+            'add_new_item' => sprintf( __( 'Add New %s' , 'instygram-via-webhooks' ), $this->single ),
+            'new_item_name' => sprintf( __( 'New %s Name' , 'instygram-via-webhooks' ), $this->single ),
+            'parent_item' => sprintf( __( 'Parent %s' , 'instygram-via-webhooks' ), $this->single ),
+            'parent_item_colon' => sprintf( __( 'Parent %s:' , 'instygram-via-webhooks' ), $this->single ),
+            'search_items' =>  sprintf( __( 'Search %s' , 'instygram-via-webhooks' ), $this->plural ),
+            'popular_items' =>  sprintf( __( 'Popular %s' , 'instygram-via-webhooks' ), $this->plural ),
+            'separate_items_with_commas' =>  sprintf( __( 'Separate %s with commas' , 'instygram-via-webhooks' ), $this->plural ),
+            'add_or_remove_items' =>  sprintf( __( 'Add or remove %s' , 'instygram-via-webhooks' ), $this->plural ),
+            'choose_from_most_used' =>  sprintf( __( 'Choose from the most used %s' , 'instygram-via-webhooks' ), $this->plural ),
+            'not_found' =>  sprintf( __( 'No %s found' , 'instygram-via-webhooks' ), $this->plural ),
         );
 
         $args = array(

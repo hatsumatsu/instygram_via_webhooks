@@ -2,10 +2,10 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class instagram_via_webhooks {
+class instygram_via_webhooks {
 
 	/**
-	 * The single instance of instagram_via_webhooks.
+	 * The single instance of instygram_via_webhooks.
 	 * @var 	object
 	 * @access  private
 	 * @since 	1.0.0
@@ -106,7 +106,7 @@ class instagram_via_webhooks {
         }
 
 		$this->_version = $version;
-		$this->_token = 'instagram_via_webhooks';
+		$this->_token = 'instygram_via_webhooks';
 
 		$this->script_suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
@@ -114,20 +114,20 @@ class instagram_via_webhooks {
 
 		// Load API for generic admin functions
 		if ( is_admin() ) {
-			$this->admin = new instagram_via_webhooks_Admin_API();
+			$this->admin = new instygram_via_webhooks_Admin_API();
 		}
 
 		// Handle localisation
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
 		
-        $this->use_custom_post_type = get_option('instagram_webhooks_use_custom_type');
-        $this->ifttt_maker_key = get_option('instagram_webhooks_ifttt_maker_key');
-        $this->new_post_status = get_option('instagram_webhooks_new_post_status');
-        $this->author_id = get_option('instagram_webhooks_new_post_status') ?: 1;
+        $this->use_custom_post_type = get_option('instygram_webhooks_use_custom_type');
+        $this->ifttt_maker_key = get_option('instygram_webhooks_ifttt_maker_key');
+        $this->new_post_status = get_option('instygram_webhooks_new_post_status');
+        $this->author_id = get_option('instygram_webhooks_new_post_status') ?: 1;
 
         if($this->use_custom_post_type) {
-            $this->register_taxonomy('instagram-tags', 'Instagram Tags', 'Instagram Tag', ['instagram']);
+            $this->register_taxonomy('instagram-tags', 'Instagram Tags', 'Instagram Tag', ['instygram']);
     		$this->register_post_type('instagram', 'Instagrams', 'Instagram', 'Instagram posts', [
     			'supports' => array( 'title', 'editor', 'thumbnail', 'instagram-tags' ),
     			'hierarchical' => false,
@@ -140,7 +140,7 @@ class instagram_via_webhooks {
 
 
     public function register_webhook_listener() {
-        // http://mysite.com/wp-json/instagram_via_webhooks/v1/post
+        // http://mysite.com/wp-json/instygram_via_webhooks/v1/post
         add_action( 'rest_api_init', function () {
             // receive POSTS
 
@@ -149,12 +149,12 @@ class instagram_via_webhooks {
                 'callback' => function(WP_REST_Request $request) {
                     require ( ABSPATH . 'wp-admin/includes/image.php' );
                     
-                    $post_id = $this->insert_instagram_post($request);
+                    $post_id = $this->insert_instygram_post($request);
                     if(!$post_id) {
                         return [ 'success' => false ];
                     }
                     
-                    $attach_id = $this->insert_instagram_image($request, $post_id);
+                    $attach_id = $this->insert_instygram_image($request, $post_id);
                     if(!$attach_id) {
                         return [ 'success' => false ];
                     }
@@ -178,10 +178,10 @@ class instagram_via_webhooks {
     }
     
     
-    private function insert_instagram_post( WP_REST_REQUEST $request) {
+    private function insert_instygram_post( WP_REST_REQUEST $request) {
         return wp_insert_post([
             'post_author'   => $this->author_id,
-            'post_title'    => 'Instagram: ' . $request->get_param('created_at'),
+            'post_title'    => 'instygram: ' . $request->get_param('created_at'),
             'post_content'  => $request->get_param('caption'),
             'post_status'   => $this->new_post_status,
             'post_type'     => ($this->use_custom_post_type) ? 'instagram' : 'post',
@@ -194,10 +194,10 @@ class instagram_via_webhooks {
     }
     
     
-    private function insert_instagram_image( WP_REST_Request $request, $post_id ) {
+    private function insert_instygram_image( WP_REST_Request $request, $post_id ) {
         $image = file_get_contents( $request->get_param('source_url') );
         $upload_dir = wp_upload_dir();
-        $filename = 'instagram_' . $post_id . '.jpg';
+        $filename = 'instygram_' . $post_id . '.jpg';
         file_put_contents( $upload_dir['path'] .'/' . $filename, $image);
         $attach_id = wp_insert_attachment( 
             [
@@ -231,7 +231,7 @@ class instagram_via_webhooks {
 
 		if ( ! $post_type || ! $plural || ! $single ) return;
 
-		$post_type = new instagram_via_webhooks_Post_Type( $post_type, $plural, $single, $description, $options );
+		$post_type = new instygram_via_webhooks_Post_Type( $post_type, $plural, $single, $description, $options );
 
 		return $post_type;
 	}
@@ -248,7 +248,7 @@ class instagram_via_webhooks {
 
 		if ( ! $taxonomy || ! $plural || ! $single ) return;
 
-		$taxonomy = new instagram_via_webhooks_Taxonomy( $taxonomy, $plural, $single, $post_types, $taxonomy_args );
+		$taxonomy = new instygram_via_webhooks_Taxonomy( $taxonomy, $plural, $single, $post_types, $taxonomy_args );
 
 		return $taxonomy;
 	}
@@ -260,7 +260,7 @@ class instagram_via_webhooks {
 	 * @return  void
 	 */
 	public function load_localisation () {
-		load_plugin_textdomain( 'instagram-via-webhooks', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
+		load_plugin_textdomain( 'instygram-via-webhooks', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
 	} // End load_localisation ()
 
 	/**
@@ -270,7 +270,7 @@ class instagram_via_webhooks {
 	 * @return  void
 	 */
 	public function load_plugin_textdomain () {
-	    $domain = 'instagram-via-webhooks';
+	    $domain = 'instygram-via-webhooks';
 
 	    $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
@@ -279,14 +279,14 @@ class instagram_via_webhooks {
 	} // End load_plugin_textdomain ()
 
 	/**
-	 * Main instagram_via_webhooks Instance
+	 * Main instygram_via_webhooks Instance
 	 *
-	 * Ensures only one instance of instagram_via_webhooks is loaded or can be loaded.
+	 * Ensures only one instance of instygram_via_webhooks is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
 	 * @static
-	 * @see instagram_via_webhooks()
-	 * @return Main instagram_via_webhooks instance
+	 * @see instygram_via_webhooks()
+	 * @return Main instygram_via_webhooks instance
 	 */
 	public static function instance ( $file = '', $version = '1.0.0' ) {
 		if ( is_null( self::$_instance ) ) {

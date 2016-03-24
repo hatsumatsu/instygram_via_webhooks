@@ -2,10 +2,10 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class instagram_via_webhooks_Settings {
+class instygram_via_webhooks_Settings {
 
 	/**
-	 * The single instance of instagram_via_webhooks_Settings.
+	 * The single instance of instygram_via_webhooks_Settings.
 	 * @var 	object
 	 * @access  private
 	 * @since 	1.0.0
@@ -39,7 +39,7 @@ class instagram_via_webhooks_Settings {
 	public function __construct ( $parent ) {
 		$this->parent = $parent;
 
-		$this->base = 'instagram_webhooks_';
+		$this->base = 'instygram_webhooks_';
 
 		// Initialise settings
 		add_action( 'init', array( $this, 'init_settings' ), 11 );
@@ -67,7 +67,7 @@ class instagram_via_webhooks_Settings {
 	 * @return void
 	 */
 	public function add_menu_item () {
-		$page = add_options_page( __( 'Instagram Webhooks', 'instagram-via-webhooks' ) , __( 'Instagram Webhooks', 'instagram-via-webhooks' ) , 'manage_options' , $this->parent->_token . '_settings' ,  array( $this, 'settings_page' ) );
+		$page = add_options_page( __( 'instygram Webhooks', 'instygram-via-webhooks' ) , __( 'instygram Webhooks', 'instygram-via-webhooks' ) , 'manage_options' , $this->parent->_token . '_settings' ,  array( $this, 'settings_page' ) );
 		add_action( 'admin_print_styles-' . $page, array( $this, 'settings_assets' ) );
 	}
 
@@ -90,7 +90,7 @@ class instagram_via_webhooks_Settings {
 	 * @return array 		Modified links
 	 */
 	public function add_settings_link ( $links ) {
-		$settings_link = '<a href="options-general.php?page=' . $this->parent->_token . '_settings">' . __( 'Settings', 'instagram-via-webhooks' ) . '</a>';
+		$settings_link = '<a href="options-general.php?page=' . $this->parent->_token . '_settings">' . __( 'Settings', 'instygram-via-webhooks' ) . '</a>';
   		array_push( $links, $settings_link );
   		return $links;
 	}
@@ -111,24 +111,24 @@ class instagram_via_webhooks_Settings {
 			'fields'				=> array(
 				array(
 					'id' 			=> 'use_custom_type',
-					'label'			=> __( 'Instagram custom post type', 'instagram-via-webhooks' ),
-					'description'	=> __( 'If this is unchecked, images will fill into normal Wordpress posts.', 'instagram-via-webhooks' ),
+					'label'			=> __( 'instagram custom post type', 'instygram-via-webhooks' ),
+					'description'	=> __( 'If this is unchecked, images will fill into normal Wordpress posts.', 'instygram-via-webhooks' ),
 					'type'			=> 'checkbox',
 					'default'		=> false
 				),
 				array(
 					'id' 			=> 'author_id',
-					'label'			=> __( 'Author' , 'instagram-via-webhooks' ),
-					'description'	=> __( 'To which user should this post be accredited?', 'instagram-via-webhooks' ),
+					'label'			=> __( 'Author' , 'instygram-via-webhooks' ),
+					'description'	=> __( 'To which user should this post be accredited?', 'instygram-via-webhooks' ),
 					'type'			=> 'select',
 					'default'		=> '',
 					'options'		=> $user_ids,
-					'placeholder'	=> __( '', 'instagram-via-webhooks' )
+					'placeholder'	=> __( '', 'instygram-via-webhooks' )
 				),
 				array(
 					'id' 			=> 'new_post_status',
-					'label'			=> __( 'New post status' , 'instagram-via-webhooks' ),
-					'description'	=> __( 'Incoming Instagrams will be given this status.', 'instagram-via-webhooks' ),
+					'label'			=> __( 'New post status' , 'instygram-via-webhooks' ),
+					'description'	=> __( 'Incoming instygrams will be given this status.', 'instygram-via-webhooks' ),
 					'type'			=> 'select',
 					'options'		=> [
 					    'publish'   => 'Publish (viewable by everyone)', 
@@ -205,7 +205,7 @@ class instagram_via_webhooks_Settings {
 
 		// Build page HTML
 		$html = '<div class="wrap" id="' . $this->parent->_token . '_settings">' . "\n";
-			$html .= '<h2>' . __( 'Instagram Webhooks Settings' , 'instagram-via-webhooks' ) . '</h2>' . "\n";
+			$html .= '<h2>' . __( 'instygram Webhooks Settings' , 'instygram-via-webhooks' ) . '</h2>' . "\n";
 
 			$tab = '';
 			if ( isset( $_GET['tab'] ) && $_GET['tab'] ) {
@@ -257,7 +257,7 @@ class instagram_via_webhooks_Settings {
 
 				$html .= '<p class="submit">' . "\n";
 					$html .= '<input type="hidden" name="tab" value="' . esc_attr( $tab ) . '" />' . "\n";
-					$html .= '<input name="Submit" type="submit" class="button-primary" value="' . esc_attr( __( 'Save Settings' , 'instagram-via-webhooks' ) ) . '" />' . "\n";
+					$html .= '<input name="Submit" type="submit" class="button-primary" value="' . esc_attr( __( 'Save Settings' , 'instygram-via-webhooks' ) ) . '" />' . "\n";
 				$html .= '</p>' . "\n";
 			$html .= '</form>' . "\n";
 		$html .= '</div>' . "\n";
@@ -266,14 +266,14 @@ class instagram_via_webhooks_Settings {
 	}
 
 	/**
-	 * Main instagram_via_webhooks_Settings Instance
+	 * Main instygram_via_webhooks_Settings Instance
 	 *
-	 * Ensures only one instance of instagram_via_webhooks_Settings is loaded or can be loaded.
+	 * Ensures only one instance of instygram_via_webhooks_Settings is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
 	 * @static
-	 * @see instagram_via_webhooks()
-	 * @return Main instagram_via_webhooks_Settings instance
+	 * @see instygram_via_webhooks()
+	 * @return Main instygram_via_webhooks_Settings instance
 	 */
 	public static function instance ( $parent ) {
 		if ( is_null( self::$_instance ) ) {

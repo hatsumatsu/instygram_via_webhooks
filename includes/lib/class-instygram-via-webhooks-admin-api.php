@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class instagram_via_webhooks_Admin_API {
+class instygram_via_webhooks_Admin_API {
 
 	/**
 	 * Constructor function
@@ -156,8 +156,8 @@ class instagram_via_webhooks_Admin_API {
 					$image_thumb = wp_get_attachment_thumb_url( $data );
 				}
 				$html .= '<img id="' . $option_name . '_preview" class="image_preview" src="' . $image_thumb . '" /><br/>' . "\n";
-				$html .= '<input id="' . $option_name . '_button" type="button" data-uploader_title="' . __( 'Upload an image' , 'instagram-via-webhooks' ) . '" data-uploader_button_text="' . __( 'Use image' , 'instagram-via-webhooks' ) . '" class="image_upload_button button" value="'. __( 'Upload new image' , 'instagram-via-webhooks' ) . '" />' . "\n";
-				$html .= '<input id="' . $option_name . '_delete" type="button" class="image_delete_button button" value="'. __( 'Remove image' , 'instagram-via-webhooks' ) . '" />' . "\n";
+				$html .= '<input id="' . $option_name . '_button" type="button" data-uploader_title="' . __( 'Upload an image' , 'instygram-via-webhooks' ) . '" data-uploader_button_text="' . __( 'Use image' , 'instygram-via-webhooks' ) . '" class="image_upload_button button" value="'. __( 'Upload new image' , 'instygram-via-webhooks' ) . '" />' . "\n";
+				$html .= '<input id="' . $option_name . '_delete" type="button" class="image_delete_button button" value="'. __( 'Remove image' , 'instygram-via-webhooks' ) . '" />' . "\n";
 				$html .= '<input id="' . $option_name . '" class="image_data_field" type="hidden" name="' . $option_name . '" value="' . $data . '"/><br/>' . "\n";
 			break;
 
