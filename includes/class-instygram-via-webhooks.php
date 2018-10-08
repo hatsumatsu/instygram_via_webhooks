@@ -195,14 +195,7 @@ class instygram_via_webhooks {
     
     
     private function insert_instygram_image( WP_REST_Request $request, $post_id ) {
-        $context = array(
-    		'ssl' => array(
-        		'verify_peer' => false,
-        		'verify_peer_name' => false,
-    		) 
-    	);
-
-        $image = file_get_contents( $request->get_param( 'source_url' ), false, stream_context_create( $context ) );
+        $image = file_get_contents( $request->get_param( 'source_url' ) );
         $filename = 'instygram_' . $post_id . '.jpg';
                 
         $upload = wp_upload_bits( $filename, null, $image );
@@ -213,14 +206,7 @@ class instygram_via_webhooks {
                'post_mime_type' => 'image/jpeg',
                'post_title'     => $filename,
                'post_content'   => $request->get_param('caption'),
-               'post_status'    => 'inherit',
-               'meta_input' => array(
-               		'debug--file' => $upload['file'],
-               		'debug--url' => $upload['url'],
-               		'debug--type' => $upload['type'],
-               		'debug--error' => $upload['error'],
-               		'debug--file_get_contents' => $image
-               )
+               'post_status'    => 'inherit'
             ], 
             $upload['file'], 
             $post_id
