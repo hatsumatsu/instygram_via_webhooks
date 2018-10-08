@@ -202,7 +202,7 @@ class instygram_via_webhooks {
                 'embed_code' => $request->get_param('embed_code')
             ],
 			'tax_input' => array(
-				'tags' => implode( $tags, ',' )
+				'tags' => implode( ',', $tags )
 			)          
         ]);
     }
