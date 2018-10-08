@@ -179,22 +179,48 @@ class instygram_via_webhooks {
     
     
     private function insert_instygram_post( WP_REST_REQUEST $request) {
+    	// extact tags
+		if( false !== preg_match_all( "/(#\w+)/", $request->get_param( 'caption' ), $matches ) ) { 	
+			$tags = $matches[0];
+			foreach( $tags as &$tag ) {
+				$tag = str_replace( '#', '', $tag );
+			}
+		} else {
+			$tags = array();
+		}
+
+
         return wp_insert_post([
             'post_author'   => $this->author_id,
-            'post_title'    => 'instygram: ' . $request->get_param('created_at'),
+            'post_title'    => $request->get_param('created_at'),
             'post_content'  => $request->get_param('caption'),
             'post_status'   => $this->new_post_status,
-            'post_type'     => ($this->use_custom_post_type) ? 'instagram' : 'post',
+            'post_type'     => 'instagram',
             'meta_input'    => [
                 'url'        => $request->get_param('url'),
                 'source_url' => $request->get_param('source_url'),
                 'embed_code' => $request->get_param('embed_code')
-            ]
+            ],
+			'tax_input' => array(
+				'tags' => implode( $tags, ',' )
+			)          
         ]);
     }
     
     
     private function insert_instygram_image( WP_REST_Request $request, $post_id ) {
+    	// Do some basic URL validating
+    	$url = parse_url( $request->get_param( 'source_url' ) ); 
+    	$allowedHosts = array(
+    		'instagram.com',
+    		'scontent.cdninstagram.com',
+    		'cdninstagram.com'
+    	);
+
+    	if( !in_array( $url['host'], $allowedHosts ) ) {
+    		return false;
+    	}
+
         $image = file_get_contents( $request->get_param( 'source_url' ) );
         $filename = 'instygram_' . $post_id . '.jpg';
                 
@@ -212,7 +238,6 @@ class instygram_via_webhooks {
             $post_id
         );
 
-        require_once( ABSPATH . 'wp-admin/includes/image.php' );        
         wp_update_attachment_metadata( 
             $attach_id, 
             wp_generate_attachment_metadata( $attach_id, $upload['file'] )
