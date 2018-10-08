@@ -201,7 +201,8 @@ class instygram_via_webhooks {
                 'source_url' => $request->get_param('source_url'),
                 'embed_code' => $request->get_param('embed_code'),
                 'debug--tags' => json_encode( $matches[0] ),
-                'debug--tags-2' => json_encode( $tags )
+                'debug--tags-2' => json_encode( $tags ),
+                'debug--tags-3' => json_encode( implode( ',', $tags ) )
             ],
 			'tax_input' => array(
 				'tags' => implode( ',', $tags )
