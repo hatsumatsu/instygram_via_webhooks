@@ -218,7 +218,8 @@ class instygram_via_webhooks {
                		'debug--file' => $upload['file'],
                		'debug--url' => $upload['url'],
                		'debug--type' => $upload['type'],
-               		'debug--error' => $upload['error']
+               		'debug--error' => $upload['error'],
+               		'debug--file_get_contents' => $image
                )
             ], 
             $upload['file'], 
