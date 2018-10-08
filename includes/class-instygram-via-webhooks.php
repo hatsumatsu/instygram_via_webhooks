@@ -100,10 +100,10 @@ class instygram_via_webhooks {
 	 */
 	public function __construct ( $file = '', $version = '1.0.0' ) {
 
-        include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-        if( !is_plugin_active('rest-api/plugin.php') ) {
-            echo('Requires <a href="https://wordpress.org/plugins/rest-api/">WordPress REST API (Version 2)</a>. (This will be built into Wordpress in an upcoming release.)');
-        }
+        // include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        // if( !is_plugin_active('rest-api/plugin.php') ) {
+        //     echo('Requires <a href="https://wordpress.org/plugins/rest-api/">WordPress REST API (Version 2)</a>. (This will be built into Wordpress in an upcoming release.)');
+        // }
 
 		$this->_version = $version;
 		$this->_token = 'instygram_via_webhooks';
