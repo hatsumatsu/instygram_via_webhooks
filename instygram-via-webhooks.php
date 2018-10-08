@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: instygram_via_webhooks
- * Version: 1.0
+ * Version: 1.0.1
  * Plugin URI: http://www.whiskyvangoghgo.com/
  * Description: Receive instagram updates via IFTTT.
  * Author: Eric Jacobsen
@@ -14,7 +14,7 @@
  *
  * @package WordPress
  * @author Eric Jacobsen
- * @since 1.0.1
+ * @since 1.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
