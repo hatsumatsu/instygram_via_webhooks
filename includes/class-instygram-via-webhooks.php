@@ -197,9 +197,7 @@ class instygram_via_webhooks {
     private function insert_instygram_image( WP_REST_Request $request, $post_id ) {
         $image = file_get_contents( $request->get_param('source_url') );
         $filename = 'instygram_' . $post_id . '.jpg';
-        
-        // file_put_contents( $upload_dir['path'] .'/' . $filename, $image);
-        
+                
         $upload = wp_upload_bits( $filename, null, $image );
 
         $attach_id = wp_insert_attachment( 
@@ -213,6 +211,8 @@ class instygram_via_webhooks {
             $upload['file'], 
             $post_id
         );
+
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );        
         wp_update_attachment_metadata( 
             $attach_id, 
             wp_generate_attachment_metadata( $attach_id, $upload['file'] )
