@@ -190,7 +190,7 @@ class instygram_via_webhooks {
 		}
 
 
-        return wp_insert_post([
+        $post_id = wp_insert_post([
             'post_author'   => $this->author_id,
             'post_title'    => $request->get_param('created_at'),
             'post_content'  => $request->get_param('caption'),
@@ -203,11 +203,14 @@ class instygram_via_webhooks {
                 'debug--tags' => json_encode( $matches[0] ),
                 'debug--tags-2' => json_encode( $tags ),
                 'debug--tags-3' => json_encode( implode( ',', $tags ) )
-            ],
-			'tax_input' => array(
-				'tags' => implode( ',', $tags )
-			)          
+            ]         
         ]);
+
+        if( $tags ) {
+        	wp_set_object_terms( $post_id, $tags, 'tags' );
+        }
+
+        return $post_id;
     }
     
     
