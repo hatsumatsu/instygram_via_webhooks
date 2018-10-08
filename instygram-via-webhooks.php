@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: instygram_via_webhooks
- * Version: 1.0.2
+ * Version: 1.0.3
  * Plugin URI: http://www.whiskyvangoghgo.com/
  * Description: Receive instagram updates via IFTTT.
  * Author: Eric Jacobsen

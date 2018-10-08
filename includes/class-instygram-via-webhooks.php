@@ -206,7 +206,13 @@ class instygram_via_webhooks {
                'post_mime_type' => 'image/jpeg',
                'post_title'     => $filename,
                'post_content'   => $request->get_param('caption'),
-               'post_status'    => 'inherit'
+               'post_status'    => 'inherit',
+               'meta_input' => array(
+               		'debug--file' => $upload['file'],
+               		'debug--url' => $upload['url'],
+               		'debug--type' => $upload['type'],
+               		'debug--error' => $upload['error']
+               )
             ], 
             $upload['file'], 
             $post_id
