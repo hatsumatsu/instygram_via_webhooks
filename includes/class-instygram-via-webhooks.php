@@ -102,7 +102,7 @@ class instygram_via_webhooks {
 
         // include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
         // if( !is_plugin_active('rest-api/plugin.php') ) {
-        //     echo('Requires <a href="https://wordpress.org/plugins/rest-api/">WordPress REST API (Version 2)</a>. (This will be built into Wordpress in an upcoming release.)');
+        //     echo('Requires <a href='https://wordpress.org/plugins/rest-api/'>WordPress REST API (Version 2)</a>. (This will be built into Wordpress in an upcoming release.)');
         // }
 
 		$this->_version = $version;
@@ -195,7 +195,14 @@ class instygram_via_webhooks {
     
     
     private function insert_instygram_image( WP_REST_Request $request, $post_id ) {
-        $image = file_get_contents( $request->get_param('source_url') );
+        $context = array(
+    		'ssl' => array(
+        		'verify_peer' => false,
+        		'verify_peer_name' => false,
+    		) 
+    	);
+
+        $image = file_get_contents( $request->get_param( 'source_url' ), false, stream_context_create( $context ) );
         $filename = 'instygram_' . $post_id . '.jpg';
                 
         $upload = wp_upload_bits( $filename, null, $image );
