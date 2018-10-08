@@ -196,9 +196,12 @@ class instygram_via_webhooks {
     
     private function insert_instygram_image( WP_REST_Request $request, $post_id ) {
         $image = file_get_contents( $request->get_param('source_url') );
-        $upload_dir = wp_upload_dir();
         $filename = 'instygram_' . $post_id . '.jpg';
-        file_put_contents( $upload_dir['path'] .'/' . $filename, $image);
+        
+        // file_put_contents( $upload_dir['path'] .'/' . $filename, $image);
+        
+        $upload = wp_upload_bits( $filename, null, $image );
+
         $attach_id = wp_insert_attachment( 
             [
                'post_author'    => $this->author_id,
@@ -207,12 +210,12 @@ class instygram_via_webhooks {
                'post_content'   => $request->get_param('caption'),
                'post_status'    => 'inherit'
             ], 
-            $upload_dir['path'] . '/' . $filename, 
+            $upload['file'], 
             $post_id
         );
         wp_update_attachment_metadata( 
             $attach_id, 
-            wp_generate_attachment_metadata( $attach_id, $upload_dir['path'] .'/' . $filename )
+            wp_generate_attachment_metadata( $attach_id, $upload['file'] )
         );
         set_post_thumbnail( $post_id, $attach_id );
         return $attach_id;
